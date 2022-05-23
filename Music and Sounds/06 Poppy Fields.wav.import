@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/06 Poppy Fields.wav-c2e271809d0860fa36973564dd0df372.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/06 Poppy Fields.wav"
+dest_files=[ "res://.import/06 Poppy Fields.wav-c2e271809d0860fa36973564dd0df372.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

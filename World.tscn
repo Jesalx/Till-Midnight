@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Levels/Level_00.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World.gd" type="Script" id=3]
+[ext_resource path="res://Player/FallPositionLocation.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/Camera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=7]
+
+[node name="World" type="Node"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="Camera" parent="." instance=ExtResource( 6 )]
+position = Vector2( 16, 152 )
+limit_right = 10000000
+
+[node name="FallPositionLocation" parent="." instance=ExtResource( 4 )]
+position = Vector2( 16, 160 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 16, 160 )
+
+[node name="CameraFollow" parent="Player" index="8"]
+remote_path = NodePath("../../Camera")
+
+[node name="UI" parent="." instance=ExtResource( 7 )]
+
+[node name="Level_00" parent="." instance=ExtResource( 1 )]
+
+[editable path="Player"]

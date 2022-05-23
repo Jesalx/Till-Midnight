@@ -1,0 +1,308 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Player/Player_Run_and_Jump.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Player/PlayerCollider.tres" type="Shape2D" id=3]
+[ext_resource path="res://CollisionBoxes/Hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://CollisionBoxes/Hitbox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Player/Player Attack.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Jump"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Run"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "create_dust_effect"
+}, {
+"args": [  ],
+"method": "create_dust_effect"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Wall Slide"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Attack"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("AttackSpriteRight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox/Collider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Attack"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("AttackSpriteLeft:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitbox2/Collider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true, false, true, false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_invincible"
+}, {
+"args": [ false ],
+"method": "set_invincible"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hurtbox/Collider:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 18.9311
+height = 11.8167
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Persists",
+]]
+z_index = 1
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -13 )
+texture = ExtResource( 1 )
+hframes = 11
+frame = 8
+
+[node name="AttackSpriteRight" type="Sprite" parent="."]
+visible = false
+position = Vector2( 7, -20 )
+texture = ExtResource( 7 )
+hframes = 5
+
+[node name="AttackSpriteLeft" type="Sprite" parent="."]
+visible = false
+position = Vector2( -6, -20 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 7 )
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -13 )
+shape = ExtResource( 3 )
+
+[node name="SpriteAnimator" type="AnimationPlayer" parent="."]
+playback_speed = 1.2
+anims/Idle = SubResource( 1 )
+anims/Jump = SubResource( 2 )
+anims/Run = SubResource( 3 )
+"anims/Wall Slide" = SubResource( 4 )
+
+[node name="AttackAnimatorRight" type="AnimationPlayer" parent="."]
+autoplay = "Attack"
+playback_speed = 3.0
+anims/Attack = SubResource( 5 )
+
+[node name="AttackAnimatorLeft" type="AnimationPlayer" parent="."]
+autoplay = "Attack"
+playback_speed = 3.0
+anims/Attack = SubResource( 6 )
+
+[node name="BlinkAnimator" type="AnimationPlayer" parent="."]
+anims/Blink = SubResource( 7 )
+
+[node name="CameraFollow" type="RemoteTransform2D" parent="."]
+position = Vector2( 0, -8 )
+update_rotation = false
+update_scale = false
+
+[node name="CoyoteJumpTimer" type="Timer" parent="."]
+wait_time = 0.11
+one_shot = true
+
+[node name="GameTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hurtbox" parent="." instance=ExtResource( 4 )]
+collision_layer = 4
+
+[node name="Collider" parent="Hurtbox" index="0"]
+position = Vector2( 0, -13 )
+shape = ExtResource( 3 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 5 )]
+collision_mask = 8
+
+[node name="Collider" parent="Hitbox" index="0"]
+position = Vector2( 11, -21 )
+rotation = -0.872665
+shape = SubResource( 8 )
+disabled = true
+
+[node name="Hitbox2" parent="." instance=ExtResource( 5 )]
+collision_mask = 8
+
+[node name="Collider" parent="Hitbox2" index="0"]
+position = Vector2( -11, -20 )
+rotation = 0.872665
+shape = SubResource( 8 )
+disabled = true
+
+[node name="PowerUpDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUpDetector"]
+position = Vector2( 0, -13 )
+shape = ExtResource( 3 )
+
+[node name="PlatformDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformDetector"]
+position = Vector2( 0, -13 )
+shape = ExtResource( 3 )
+[connection signal="hit" from="Hurtbox" to="." method="_on_Hurtbox_hit"]
+[connection signal="area_entered" from="PowerUpDetector" to="." method="_on_PowerUpDetector_area_entered"]
+[connection signal="area_entered" from="PlatformDetector" to="." method="_on_PlatformDetector_area_entered"]
+[connection signal="area_exited" from="PlatformDetector" to="." method="_on_PlatformDetector_area_exited"]
+
+[editable path="Hurtbox"]
+
+[editable path="Hitbox"]
+
+[editable path="Hitbox2"]

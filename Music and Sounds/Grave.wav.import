@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Grave.wav-4f05d89b641dd1af3edfae580baef01b.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/Grave.wav"
+dest_files=[ "res://.import/Grave.wav-4f05d89b641dd1af3edfae580baef01b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

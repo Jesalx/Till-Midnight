@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://UI/DefaultTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Menus/PauseMenu.gd" type="Script" id=2]
+[ext_resource path="res://Menus/OptionMenu.tscn" type="PackedScene" id=3]
+
+[node name="PauseMenu" type="ColorRect"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 86.0
+margin_top = 39.0
+margin_right = 234.0
+margin_bottom = 140.0
+
+[node name="PauseLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 148.0
+margin_bottom = 23.0
+text = "Paused"
+align = 1
+
+[node name="Gap" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 27.0
+margin_right = 148.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 41.0
+margin_right = 148.0
+margin_bottom = 62.0
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 72.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 72, 16 )
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 76.0
+margin_right = 148.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 72, 16 )
+text = "Restart"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 66.0
+margin_right = 148.0
+margin_bottom = 87.0
+
+[node name="OptionButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 72.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 72, 16 )
+text = "options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 76.0
+margin_right = 148.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 72, 16 )
+text = "Quit"
+
+[node name="Gap2" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 91.0
+margin_right = 148.0
+margin_bottom = 101.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="OptionMenu" parent="." instance=ExtResource( 3 )]
+visible = false
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/ResumeButton" to="." method="_on_ResumeButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_RestartButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer2/OptionButton" to="." method="_on_OptionButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/OptionButton" to="." method="_on_OptionButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer2/QuitButton" to="." method="_on_QuitButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/QuitButton" to="." method="_on_QuitButton_pressed"]

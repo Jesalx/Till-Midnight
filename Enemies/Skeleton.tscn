@@ -1,0 +1,235 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemies/Skeleton.gd" type="Script" id=2]
+[ext_resource path="res://Enemies/Skeleton.png" type="Texture" id=3]
+[ext_resource path="res://CollisionBoxes/Hitbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemies/Skeleton attack.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 20 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Walking"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AttackSpriteRight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitboxRight/Collider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AttackSpriteLeft:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HitboxLeft/Collider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 7, 20 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 7, 20 )
+
+[sub_resource type="CapsuleShape2D" id=7]
+radius = 17.0
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 17.0
+
+[node name="Skeleton" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+MAX_SPEED = 20
+WALKING_DIRECTION = -1
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 0, -21 )
+texture = ExtResource( 3 )
+hframes = 8
+
+[node name="AttackSpriteRight" type="Sprite" parent="." index="1"]
+visible = false
+position = Vector2( 19, -20 )
+texture = ExtResource( 5 )
+hframes = 5
+
+[node name="AttackSpriteLeft" type="Sprite" parent="." index="2"]
+visible = false
+position = Vector2( -19, -20 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 5 )
+hframes = 5
+
+[node name="Collider" parent="." index="3"]
+visible = false
+position = Vector2( 0, -20 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" parent="." index="4"]
+autoplay = "Walking"
+playback_speed = 0.85
+anims/Walking = SubResource( 2 )
+
+[node name="AttackAnimatorRight" type="AnimationPlayer" parent="." index="5"]
+playback_speed = 0.7
+anims/Attack = SubResource( 3 )
+
+[node name="AttackAnimatorLeft" type="AnimationPlayer" parent="." index="6"]
+playback_speed = 0.7
+anims/Attack = SubResource( 4 )
+
+[node name="AttackRangeLeft" type="RayCast2D" parent="." index="7"]
+position = Vector2( 0, -20 )
+enabled = true
+cast_to = Vector2( -25, 0 )
+
+[node name="AttackRangeRight" type="RayCast2D" parent="." index="8"]
+position = Vector2( 0, -20 )
+enabled = true
+cast_to = Vector2( 25, 0 )
+
+[node name="PlayerLeft" type="RayCast2D" parent="." index="9"]
+position = Vector2( 0, -20 )
+enabled = true
+cast_to = Vector2( -100, 0 )
+
+[node name="PlayerRight" type="RayCast2D" parent="." index="10"]
+position = Vector2( 0, -20 )
+enabled = true
+cast_to = Vector2( 100, 0 )
+
+[node name="FloorLeft" type="RayCast2D" parent="." index="11"]
+position = Vector2( -7, 0 )
+enabled = true
+cast_to = Vector2( 0, 6 )
+collision_mask = 2
+
+[node name="FloorRight" type="RayCast2D" parent="." index="12"]
+position = Vector2( 7, 0 )
+enabled = true
+cast_to = Vector2( 0, 6 )
+collision_mask = 2
+
+[node name="WallLeft" type="RayCast2D" parent="." index="13"]
+position = Vector2( 0, -6 )
+enabled = true
+cast_to = Vector2( -8, 0 )
+collision_mask = 2
+
+[node name="WallLeftTop" type="RayCast2D" parent="." index="14"]
+position = Vector2( 0, -35 )
+enabled = true
+cast_to = Vector2( -8, 0 )
+collision_mask = 2
+
+[node name="WallRight" type="RayCast2D" parent="." index="15"]
+position = Vector2( 0, -6 )
+enabled = true
+cast_to = Vector2( 8, 0 )
+collision_mask = 2
+
+[node name="WallRightTop" type="RayCast2D" parent="." index="16"]
+position = Vector2( 0, -35 )
+enabled = true
+cast_to = Vector2( 8, 0 )
+collision_mask = 2
+
+[node name="AttackCooldownTimer" type="Timer" parent="." index="17"]
+wait_time = 4.0
+one_shot = true
+
+[node name="Collider" parent="Hurtbox" index="0"]
+visible = false
+position = Vector2( 0, -20 )
+shape = SubResource( 5 )
+
+[node name="EnemyStats" parent="." index="19"]
+max_health = 2
+
+[node name="Collider" parent="Hitbox" index="0"]
+visible = false
+position = Vector2( 0, -20 )
+shape = SubResource( 6 )
+
+[node name="HitboxRight" parent="." index="21" instance=ExtResource( 4 )]
+collision_mask = 4
+
+[node name="Collider" parent="HitboxRight" index="0"]
+position = Vector2( 14, -23 )
+rotation = 1.5708
+shape = SubResource( 7 )
+disabled = true
+
+[node name="HitboxLeft" parent="." index="22" instance=ExtResource( 4 )]
+collision_mask = 4
+
+[node name="Collider" parent="HitboxLeft" index="0"]
+position = Vector2( -14, -23 )
+rotation = 1.5708
+shape = SubResource( 8 )
+disabled = true
+
+[editable path="Hurtbox"]
+
+[editable path="Hitbox"]
+
+[editable path="HitboxRight"]
+
+[editable path="HitboxLeft"]

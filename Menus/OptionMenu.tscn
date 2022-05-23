@@ -1,0 +1,131 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/DefaultTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Menus/OptionMenu.gd" type="Script" id=2]
+
+[node name="OptionMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 102.0
+margin_top = 13.0
+margin_right = 218.0
+margin_bottom = 167.0
+
+[node name="OptionLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 116.0
+margin_bottom = 23.0
+text = "options"
+align = 1
+
+[node name="Gap" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 27.0
+margin_right = 116.0
+margin_bottom = 27.0
+
+[node name="Fullscreen" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 31.0
+margin_right = 116.0
+margin_bottom = 55.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Fullscreen"]
+margin_right = 88.0
+margin_bottom = 23.0
+text = "fullscreen"
+
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/VBoxContainer/Fullscreen"]
+margin_left = 92.0
+margin_right = 116.0
+margin_bottom = 24.0
+
+[node name="Music" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 59.0
+margin_right = 116.0
+margin_bottom = 82.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Music"]
+margin_right = 48.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 48, 0 )
+text = "music"
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/Music"]
+margin_left = 52.0
+margin_right = 112.0
+margin_bottom = 23.0
+
+[node name="MusicSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Music/CenterContainer"]
+margin_top = 8.0
+margin_right = 60.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 60, 0 )
+max_value = 1.0
+step = 0.05
+
+[node name="SFX" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 86.0
+margin_right = 116.0
+margin_bottom = 109.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/SFX"]
+margin_right = 50.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 50, 0 )
+text = "sfx"
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/SFX"]
+margin_left = 54.0
+margin_right = 114.0
+margin_bottom = 23.0
+
+[node name="SFXSlider" type="HSlider" parent="CenterContainer/VBoxContainer/SFX/CenterContainer"]
+margin_top = 8.0
+margin_right = 60.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 60, 0 )
+max_value = 1.0
+step = 0.05
+
+[node name="Gap2" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 113.0
+margin_right = 116.0
+margin_bottom = 119.0
+rect_min_size = Vector2( 0, 6 )
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 123.0
+margin_right = 116.0
+margin_bottom = 144.0
+text = "Back"
+
+[node name="Gap3" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 148.0
+margin_right = 116.0
+margin_bottom = 154.0
+rect_min_size = Vector2( 0, 6 )
+[connection signal="toggled" from="CenterContainer/VBoxContainer/Fullscreen/CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/Music/CenterContainer/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/SFX/CenterContainer/SFXSlider" to="." method="_on_SFXSlider_value_changed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]

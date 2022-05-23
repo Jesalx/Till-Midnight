@@ -1,0 +1,17 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Music and Sounds/Music.gd" type="Script" id=1]
+[ext_resource path="res://Music and Sounds/01 Night of the Headless Riders.wav" type="AudioStream" id=2]
+[ext_resource path="res://Music and Sounds/06 Poppy Fields.wav" type="AudioStream" id=3]
+[ext_resource path="res://Music and Sounds/05 Horrors of Infinity.wav" type="AudioStream" id=4]
+[ext_resource path="res://Music and Sounds/07 Heaven can Wait.wav" type="AudioStream" id=5]
+[ext_resource path="res://Music and Sounds/02 Into the Lair.wav" type="AudioStream" id=6]
+
+[node name="Music" type="Node"]
+pause_mode = 2
+script = ExtResource( 1 )
+music_list = [ ExtResource( 6 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ) ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = "Music"
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

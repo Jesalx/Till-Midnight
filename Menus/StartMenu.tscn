@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Menus/StartMenu.gd" type="Script" id=1]
+[ext_resource path="res://UI/DefaultTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Menus/OptionMenu.tscn" type="PackedScene" id=3]
+
+[node name="StartMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 78.0
+margin_top = 37.0
+margin_right = 242.0
+margin_bottom = 142.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 164.0
+margin_bottom = 23.0
+text = "Till Midnight"
+align = 1
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 27.0
+margin_right = 164.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 0, 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 43.0
+margin_right = 164.0
+margin_bottom = 64.0
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 80.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 80, 16 )
+text = "New Game"
+
+[node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 84.0
+margin_right = 164.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 80, 16 )
+text = "Load Game"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 164.0
+margin_bottom = 89.0
+
+[node name="OptionButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 80.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 80, 16 )
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 84.0
+margin_right = 164.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 80, 16 )
+text = "Quit"
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 93.0
+margin_right = 164.0
+margin_bottom = 105.0
+rect_min_size = Vector2( 0, 12 )
+
+[node name="OptionMenu" parent="." instance=ExtResource( 3 )]
+visible = false
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_StartButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_LoadButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_LoadButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer2/OptionButton" to="." method="_on_OptionButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/OptionButton" to="." method="_on_OptionButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer2/QuitButton" to="." method="_on_QuitButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/QuitButton" to="." method="_on_QuitButton_pressed"]

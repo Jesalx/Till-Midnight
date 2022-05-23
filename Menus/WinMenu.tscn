@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Menus/WinMenu.gd" type="Script" id=1]
+[ext_resource path="res://UI/DefaultTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Menus/OptionMenu.tscn" type="PackedScene" id=3]
+
+[node name="WinMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 78.0
+margin_top = 27.0
+margin_right = 242.0
+margin_bottom = 153.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 164.0
+margin_bottom = 23.0
+text = "you win"
+align = 1
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 27.0
+margin_right = 164.0
+margin_bottom = 50.0
+align = 1
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 164.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 64.0
+margin_right = 164.0
+margin_bottom = 85.0
+text = "main menu"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 89.0
+margin_right = 164.0
+margin_bottom = 110.0
+
+[node name="OptionButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_right = 80.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 80, 16 )
+text = "options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 84.0
+margin_right = 164.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 80, 16 )
+text = "quit"
+
+[node name="Control2" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 114.0
+margin_right = 164.0
+margin_bottom = 126.0
+rect_min_size = Vector2( 0, 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionMenu" parent="." instance=ExtResource( 3 )]
+visible = false
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_OptionButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_OptionButton_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_QuitButton_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
